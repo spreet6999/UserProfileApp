@@ -1,7 +1,12 @@
-{% extends "base.html" %}
+{% extends 'Users/base.html' %}
 
 {% block content %}
-
-    <h1>You have successfully Logged In!</h1>
+    
+    {% if user.is_authenticated %}
+        {% comment %} Show Profile of Logged User {% endcomment %}
+        <h1>You have successfully Logged In!</h1>
+    {% else %}
+        <h2>Please Login/SignUp First</h2>
+    {% endif %}
 
 {% endblock %}

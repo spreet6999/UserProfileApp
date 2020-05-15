@@ -10,7 +10,7 @@ from .models import Profile, User
 
 
 def home(request):
-    return render(request, "Users/base.html", {})
+    return render(request, "Users/profile.html", {})
 
 class ProfileDetail(DetailView):
     model = User
