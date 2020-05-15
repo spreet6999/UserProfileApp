@@ -7,6 +7,10 @@
         <h1>You have successfully Logged In!</h1>
     {% else %}
         <h2>Please Login/SignUp First</h2>
+        <br>
+        <button class="btn btn-block btn-primary btn-md" href="{% url 'Users:login' %}">Login</button>
+        <button class="btn btn-block btn-primary btn-md" href="{% url 'Users:signup' %}">SignUp</button>
+
     {% endif %}
 
 {% endblock %}
