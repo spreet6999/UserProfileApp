@@ -27,26 +27,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i> Profile </a>
 
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"></i> Profile </a>
-
-            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                <a class="dropdown-item" href="#">My account</a>
-                <a class="dropdown-item" href="{% url 'Users:logout' %}">Log out</a>
-            </div>
-            </li>
+                <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                    <a class="dropdown-item" href="#">My account</a>
+                    <a class="dropdown-item" href="{% url 'Users:logout' %}">Log out</a>
+                </div>
+                </li>
             {% else %}
-
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'Users:signup' %}"></a>SignUp</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'Users:login' %}">Login</a>
-            </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Users:signup' %}">SignUp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Users:login' %}">Login</a>
+                </li>
             {% endif %}
         </ul>
         </div>
