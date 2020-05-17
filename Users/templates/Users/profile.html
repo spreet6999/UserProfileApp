@@ -1,15 +1,58 @@
 {% extends 'Users/base.html' %}
-
+{% load static %}
 {% block content %}
     
     {% if user.is_authenticated %}
-        {% comment %} Show Profile of Logged User {% endcomment %}
-        <h1>You have successfully Logged In!</h1>
+        <!-- Show Profile for logged in user -->
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-body h-100  border-info" id="profile-wrapper">
+                        <img id="profile-pic" src="{{ user.profile.profile_image.url }}" class="rounded-circle img-responsive">
+                        <hr>
+                        <h3><strong>{{ user.username }}</strong></h3>
+                        <h5><strong>{{ user.email }}</strong></h5>
+                    </div>
+                </div>
+    
+                <div class="col-md-9">
+                    <div class="card card-body h-100  border-info">
+                        <h4>Introduction:</h4>
+                        <hr>
+                        <p>{{ user.profile.information }}</p>
+                        <a class="link btn btn-dark btn-md" href="{% url 'Users:document_upload' %}" target="_blank">
+                            Upload Document
+                        </a>
+    
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row" style="margin-top: 20px;">
+            {% if user.document.all %}
+                {% for doc in user.document.all %}
+                <div class="col-md-6">
+                    <div class="card card-body h-100">
+                        <h5>{{ doc.title }}</h5>
+                        <hr>
+                        <p>Click to view your document:</p>
+                        <a class="link btn btn-info" href="{{ doc.document.url }}" target="_blank">
+                            View
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>You have no Documents</p>
+            {% endif %}
+            </div>
+		        <br>
     {% else %}
         <h2 style="margin-top: 10px;">Please Login/SignUp First</h2>
         <br>
-        <button type="button" class="btn btn-outline-primary waves-effect"><a class="nav-link" href="{% url 'Users:login' %}">Login</a></button>
-        <button type="button" class="btn btn-outline-primary waves-effect"><a class="nav-link" href="{% url 'Users:signup' %}">SignUp</a></button>
+        <button type="button" class="btn btn-outline-primary waves-effect"><a class="link" href="{% url 'Users:login' %}">Login</a></button>
+        <button type="button" class="btn btn-outline-primary waves-effect"><a class="link" href="{% url 'Users:signup' %}">SignUp</a></button>
     {% endif %}
 
 {% endblock %}
